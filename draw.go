@@ -124,7 +124,7 @@ func drawWelcome(gd gruid.Grid) gruid.Grid {
 @l#@L.@l.@d##≈≈≈.........""""##
 @t───────────────────────
 `
-	stt.WithText(text).Draw(gd.Slice(rg.Shift(20, 6, 0, 0)))
+	stt.WithText(text).Draw(gd.Slice(rg.Shift(0, 0, 0, 0)))
 	return gd
 }
 
@@ -143,6 +143,7 @@ func (md *model) drawMap(gd gruid.Grid) {
 
 func (md *model) positionDrawing(p gruid.Point) (r rune, fgColor, bgColor gruid.Color) {
 	g := md.g
+	md.offsetPWithPlayerPosition(&p)
 	c := g.Dungeon.Cell(p)
 	fgColor = ColorFg
 	bgColor = ColorBg
@@ -269,4 +270,11 @@ func (m *monster) StyleKnowledge() (r rune, fg gruid.Color) {
 		fg = ColorFgWanderingMonster
 	}
 	return r, fg
+}
+
+func (md *model) offsetPWithPlayerPosition(p *gruid.Point) {
+	g := md.g
+	playerPoint := g.Player.P
+	p.X  += playerPoint.X - UIWidth/2
+	p.Y  += playerPoint.Y - (UIHeight-4)/2
 }

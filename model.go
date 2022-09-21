@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	UIWidth  = 80
+	UIWidth  = 50
 	UIHeight = 24
 )
 
