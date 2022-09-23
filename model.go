@@ -14,7 +14,8 @@ import (
 
 const (
 	UIWidth  = 50
-	UIHeight = 24
+	UIHeight = 30
+	logHeight = 3
 )
 
 var (
